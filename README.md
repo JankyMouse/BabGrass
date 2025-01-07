@@ -1,4 +1,3 @@
-BabGrass<br>
 This is a plugin for MV3D that generates 3D grass on a specific tile ID.<br>
 
 Plugin Setup:<br>

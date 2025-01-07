@@ -8,7 +8,7 @@
 
   var JM = JM || {};
       JM.BabGrass = JM.BabGrass || {};
-      JM.BabGrass.Version = 0.7;
+      JM.BabGrass.Version = 0.8;
 
 /*:
 

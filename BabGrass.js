@@ -8,7 +8,7 @@
 
   var JM = JM || {};
       JM.BabGrass = JM.BabGrass || {};
-      JM.BabGrass.Version = 0.8;
+      JM.BabGrass.Version = 0.9;
 
 /*:
 
@@ -32,7 +32,7 @@
 
 *@param GrassTexture
 *@text Grass Texture
-*@desc Location of your grass texture. png format
+*@desc Location of your grass texture. Format - "./img/MV3D/grass.png"
 *@type Text
 
 
@@ -79,17 +79,17 @@
 //------------------------------------------------------------------------------------
 // Alias perform Transfer
 
-const oldGamePlayer_performTransfer = Game_Player.prototype.performTransfer;
-  Game_Player.prototype.performTransfer=function(){
+const Scenetype_onMapLoaded = Scene_Map.prototype.onMapLoaded;
+Scene_Map.prototype.onMapLoaded = function(){
 // Run original of Transfer alias
-  oldGamePlayer_performTransfer.call(this);
+  Scenetype_onMapLoaded.call(this);
 
 //------------------------------------------------------------------------------------
 // Cleanup for New Map Load
 
-    if (JM_BabGrass.grassParticle != null){
-      JM_BabGrass.grassParticle.dispose();
-     };
+  if (JM_BabGrass.grassParticle != null){
+    JM_BabGrass.grassParticle.dispose();
+  };
 
 //------------------------------------------------------------------------------------
 // Tile Position Data
@@ -110,7 +110,7 @@ const oldGamePlayer_performTransfer = Game_Player.prototype.performTransfer;
       Ymath = indices.map(element => Math.trunc(element / $dataMap.height)),
       listxBase = [];
 
-    for(var i = 0;i<=Ymath.length-1;i++)
+  for (var i = 0;i<=Ymath.length-1;i++)
       listxBase.push(MapIndex[i] - (Ymath[i] * $dataMap.width) - 0.5);
 
   let listyBase = indices.map(element => Math.trunc(element / $dataMap.height) * -1 - 0.5);
@@ -119,7 +119,7 @@ const oldGamePlayer_performTransfer = Game_Player.prototype.performTransfer;
       asdf = indices.map(element => element + regionOffset),
       listzBase = [];
       //console.log(asdf);
-    for(var i4 = 0;i4<=asdf.length-1;i4++)
+  for (var i4 = 0;i4<=asdf.length-1;i4++)
       listzBase.push($dataMap.data[asdf[i4]]);
 
   function multiplyBase(arr, length){
